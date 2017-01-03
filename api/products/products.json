@@ -1,0 +1,52 @@
+[
+    {
+        "productId": 3,
+        "productName": "A Garden Cart",
+        "productCode": "GDN - 0023",
+        "releaseDate": "March 18, 2016",
+        "description": "15 galon capacity rolling",
+        "price": 17.89,
+        "starRating": 4.2,
+        "imageUrl": "img/garden-cart.png"
+    },
+    {
+        "productId": 5,
+        "productName": "AB Hammer",
+        "productCode": "TBX - 0048",
+        "releaseDate": "November 13, 2016",
+        "description": "Curved claw steel hammer",
+        "price": 8.90,
+        "starRating": 2.3,
+        "imageUrl": "img/rejon-Hammer.png"
+    },
+    {
+        "productId": 11,
+        "productName": "ABC Saw",
+        "productCode": "TBX - 0022",
+        "releaseDate": "November 16, 2016",
+        "description": "15-inch steel blade hand saw",
+        "price": 49.90,
+        "starRating": 2.8,
+        "imageUrl": "img/power-saw.png"
+    },
+    {
+        "productId": 17,
+        "productName": "ABCD X - Box Controller",
+        "productCode": "GMC - 0071",
+        "releaseDate": "November 17, 2016",
+        "description": "Standard video game controller",
+        "price": 178.90,
+        "starRating": 1.2,
+        "imageUrl": "img/control.png"
+    },
+    {
+        "productId": 21,
+        "productName": "ABCDE Leaf Rake",
+        "productCode": "GDN - 0011",
+        "releaseDate": "November 21, 2016",
+        "description": "Leaf rake with 48-inch wooden handle",
+        "price": 19.95,
+        "starRating": 3.2,
+        "imageUrl": "img/leaf-rake.png"
+    }
+]

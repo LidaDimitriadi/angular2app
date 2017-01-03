@@ -1,0 +1,9 @@
+<ul *ngIf='visitedRoutes'>
+    <h4>Visited Routes:</h4>
+    <li *ngFor='let route of visitedRoutes'>
+
+        <a *ngIf="route.id != 0" [routerLink]="['/product', route.id]">{{ route.route }}:{{ route.id }}</a>
+        <a *ngIf="route.id == 0" [routerLink]="route.route">{{ route.route }}</a>
+        
+    </li>
+</ul>

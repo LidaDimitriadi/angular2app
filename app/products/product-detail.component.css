@@ -1,0 +1,13 @@
+.details {
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.detailLabel {
+    font-weight: bold;
+    padding-left: 0px;
+}
+
+.detailWrapper {
+    margin: 10px;
+}
