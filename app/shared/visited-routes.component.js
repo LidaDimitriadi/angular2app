@@ -9,29 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var redux_state_1 = require('../state-management/redux-state');
+var ng2_redux_1 = require('ng2-redux');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/do');
+require('rxjs/add/operator/catch');
 var VisitedRoutesComponent = (function () {
-    function VisitedRoutesComponent(_testRedux) {
-        this._testRedux = _testRedux;
-        this.visitedRoutes = this.getRoutes();
+    function VisitedRoutesComponent() {
     }
-    VisitedRoutesComponent.prototype.getRoutes = function () {
-        console.log("updating routes");
-        console.log(this._testRedux.store.getState().visitedRoutes);
-        return this._testRedux.store.getState().visitedRoutes;
-    };
-    ;
-    VisitedRoutesComponent.prototype.ngOnInit = function () {
-        console.log(this._testRedux.store.getState());
-        this.visitedRoutes = this._testRedux.store.getState().visitedRoutes;
-    };
+    __decorate([
+        ng2_redux_1.select(), 
+        __metadata('design:type', Object)
+    ], VisitedRoutesComponent.prototype, "visitedRoutes", void 0);
     VisitedRoutesComponent = __decorate([
         core_1.Component({
             selector: 'visited-routes',
             moduleId: module.id,
             templateUrl: './visited-routes.component.html'
         }), 
-        __metadata('design:paramtypes', [redux_state_1.TestRedux])
+        __metadata('design:paramtypes', [])
     ], VisitedRoutesComponent);
     return VisitedRoutesComponent;
 }());

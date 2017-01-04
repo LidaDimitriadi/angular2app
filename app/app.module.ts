@@ -13,8 +13,16 @@ import { AppComponent }     from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { VisitedRoutesComponent } from './shared/visited-routes.component';
 
-import { VisitedRoutes } from './visited-routes.service';
-import { TestRedux } from './state-management/redux-state';
+import { NgReduxModule, NgRedux } from 'ng2-redux';
+import { appReducer } from './state-management/redux-state';
+import { IAppState } from './state-management/store-interfaces';
+import { IRoute } from './IRoute';
+
+
+const initialState: IAppState = {
+  filterStr: "",
+  visitedRoutes: []
+};
 
 
 @NgModule({
@@ -25,20 +33,26 @@ import { TestRedux } from './state-management/redux-state';
     Sample1Module,
     Sample2Module,
     Sample3Module,
-    Routing
+    Routing,
+    NgReduxModule
     
   ],
   declarations: [
     AppComponent,
     WelcomeComponent,
     VisitedRoutesComponent
+    
   ],
   bootstrap:  [ AppComponent ],
   providers: [ 
     AppRoutingProviders,
-    VisitedRoutes,
-    TestRedux
+    NgRedux
     ]
 })
 
-export class AppModule { }
+
+export class AppModule { 
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(appReducer, initialState);
+  }
+}

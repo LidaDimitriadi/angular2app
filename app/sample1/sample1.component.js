@@ -9,20 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var visited_routes_service_1 = require('../visited-routes.service');
+var ng2_redux_1 = require('ng2-redux');
+var actions_1 = require('../state-management/actions');
 var Sample1Component = (function () {
-    function Sample1Component(_visitedRoutesService) {
-        this._visitedRoutesService = _visitedRoutesService;
+    function Sample1Component(ngRedux) {
+        this.ngRedux = ngRedux;
         this.pageTitle = "Sample1 Route!";
     }
     Sample1Component.prototype.ngOnInit = function () {
-        this._visitedRoutesService.addRoute('sample1', 0);
+        this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'sample1' } });
     };
     Sample1Component = __decorate([
         core_1.Component({
             template: "\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">\n                {{ pageTitle }}\n            </div>\n        </div>\n    "
         }), 
-        __metadata('design:paramtypes', [visited_routes_service_1.VisitedRoutes])
+        __metadata('design:paramtypes', [ng2_redux_1.NgRedux])
     ], Sample1Component);
     return Sample1Component;
 }());

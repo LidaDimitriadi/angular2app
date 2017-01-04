@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VisitedRoutes } from '../visited-routes.service';
+import { select, NgRedux } from 'ng2-redux';
+
+import { IAppState } from '../state-management/store-interfaces';
+import { UPDATE_VISITED_ROUTES } from '../state-management/actions';
 
 
 @Component({
@@ -14,11 +17,12 @@ import { VisitedRoutes } from '../visited-routes.service';
 export class Sample2Component implements OnInit {
      pageTitle: string = "Sample2 Route!";
 
-     constructor(private _visitedRoutesService: VisitedRoutes){
+     constructor(private ngRedux: NgRedux<IAppState>){
 
      }
 
      ngOnInit(){
-         this._visitedRoutesService.addRoute('sample2',0);
+        this.ngRedux.dispatch({ type: UPDATE_VISITED_ROUTES, payload: {route: 'sample2'} });
+
      }
 }

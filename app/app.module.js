@@ -20,10 +20,15 @@ var sample3_module_1 = require('./sample3/sample3.module');
 var app_component_1 = require('./app.component');
 var welcome_component_1 = require('./home/welcome.component');
 var visited_routes_component_1 = require('./shared/visited-routes.component');
-var visited_routes_service_1 = require('./visited-routes.service');
+var ng2_redux_1 = require('ng2-redux');
 var redux_state_1 = require('./state-management/redux-state');
+var initialState = {
+    filterStr: "",
+    visitedRoutes: []
+};
 var AppModule = (function () {
-    function AppModule() {
+    function AppModule(ngRedux) {
+        ngRedux.configureStore(redux_state_1.appReducer, initialState);
     }
     AppModule = __decorate([
         core_1.NgModule({
@@ -34,7 +39,8 @@ var AppModule = (function () {
                 sample1_module_1.Sample1Module,
                 sample2_module_1.Sample2Module,
                 sample3_module_1.Sample3Module,
-                app_routing_1.Routing
+                app_routing_1.Routing,
+                ng2_redux_1.NgReduxModule
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -44,11 +50,10 @@ var AppModule = (function () {
             bootstrap: [app_component_1.AppComponent],
             providers: [
                 app_routing_1.AppRoutingProviders,
-                visited_routes_service_1.VisitedRoutes,
-                redux_state_1.TestRedux
+                ng2_redux_1.NgRedux
             ]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [ng2_redux_1.NgRedux])
     ], AppModule);
     return AppModule;
 }());

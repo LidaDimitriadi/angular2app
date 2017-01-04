@@ -27,8 +27,8 @@ var ProductsModule = (function () {
             ],
             declarations: [
                 product_detail_component_1.ProductDetailComponent,
+                product_list_component_1.ProductListComponent,
                 product_filter_pipe_1.ProductFilterPipe,
-                product_list_component_1.ProductListComponent
             ],
             providers: [
                 product_guard_service_1.ProductGuardService,

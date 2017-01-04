@@ -12,10 +12,9 @@ export const addRoute = (routes: IRoute[], route: IRoute): IRoute[] => {
         if(index == -1) {
 
             if(routes.length == 3 ){
-                return routes.slice(1, routes.length -1)
+                console.log('length == 3');
+                return (routes.slice(1, routes.length)).concat(route);
             }
-            console.log(routes);
-            console.log(routes.concat(route));
             return routes.concat(route);
         }
         console.log(routes);

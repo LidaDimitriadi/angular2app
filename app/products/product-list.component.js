@@ -10,16 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var product_service_1 = require('./product.service');
-var redux_state_1 = require('../state-management/redux-state');
+var ng2_redux_1 = require('ng2-redux');
+var actions_1 = require('../state-management/actions');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/do');
+require('rxjs/add/operator/catch');
 var ProductListComponent = (function () {
-    function ProductListComponent(_productService, _testRedux) {
+    function ProductListComponent(_productService, ngRedux) {
         this._productService = _productService;
-        this._testRedux = _testRedux;
+        this.ngRedux = ngRedux;
         this.pageTitle = 'Product List';
         this.imageWidth = 50;
         this.imageMargin = 5;
         this.showImages = false;
-        this.filterStr = this._testRedux.store.getState().filterStr;
+        //filterStr: string = this._testRedux.store.getState().filterStr;
+        //@select() filterStr;
+        this.filterStr = this.ngRedux.getState().filterStr;
     }
     ;
     ProductListComponent.prototype.toggleImage = function () {
@@ -29,10 +35,13 @@ var ProductListComponent = (function () {
     ProductListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._productService.getProducts().subscribe(function (products) { return _this.products = products; }, function (error) { return _this.errorMessage = error; }, function () { return console.log("completed http request!!"); });
-        this._testRedux.dispatchAddRouteAction({ route: 'products', id: 0 });
+        this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'products' } });
+        console.log(this.ngRedux.getState());
+        console.log(this.filterStr);
+        //this.filterStr = this.ngRedux.select('filterStr');
     };
     ProductListComponent.prototype.ngOnDestroy = function () {
-        this._testRedux.dispatchFilterAction(this.filterStr);
+        this.ngRedux.dispatch({ type: actions_1.UPDATE_FILTER, payload: this.filterStr });
     };
     ProductListComponent.prototype.ratingClickHandler = function (event) {
         console.log(event);
@@ -43,7 +52,7 @@ var ProductListComponent = (function () {
             templateUrl: 'product-list.component.html',
             styleUrls: ['product-list.component.css'],
         }), 
-        __metadata('design:paramtypes', [product_service_1.ProductService, redux_state_1.TestRedux])
+        __metadata('design:paramtypes', [product_service_1.ProductService, ng2_redux_1.NgRedux])
     ], ProductListComponent);
     return ProductListComponent;
 }());

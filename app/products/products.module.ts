@@ -15,8 +15,9 @@ import { productRouting } from './products.routing';
     ],
     declarations: [
         ProductDetailComponent,
+        ProductListComponent,
         ProductFilterPipe,
-        ProductListComponent 
+        
     ],
     providers: [ 
         ProductGuardService,

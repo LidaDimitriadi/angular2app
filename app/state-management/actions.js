@@ -1,4 +1,4 @@
 "use strict";
 exports.UPDATE_FILTER = 'UPDATE_FILTER';
-exports.updateFilterAction = function (filterStr) { return ({ type: exports.UPDATE_FILTER, payload: filterStr }); };
+exports.UPDATE_VISITED_ROUTES = 'UPDATE_VISITED_ROUTES';
 //# sourceMappingURL=actions.js.map

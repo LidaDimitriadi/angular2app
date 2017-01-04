@@ -11,13 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var product_service_1 = require('./product.service');
-var redux_state_1 = require('../state-management/redux-state');
+var ng2_redux_1 = require('ng2-redux');
+var actions_1 = require('../state-management/actions');
 var ProductDetailComponent = (function () {
-    function ProductDetailComponent(_route, _service, _router, _testRedux) {
+    function ProductDetailComponent(_route, _service, _router, ngRedux) {
         this._route = _route;
         this._service = _service;
         this._router = _router;
-        this._testRedux = _testRedux;
+        this.ngRedux = ngRedux;
         this.pageTitle = 'Product Details';
         this.imageWidth = 300;
         this.imageMargin = 10;
@@ -28,9 +29,7 @@ var ProductDetailComponent = (function () {
         var id = +this._route.snapshot.params['id'];
         this.pageTitle += ": " + id;
         this._service.getProductById(id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
-    };
-    ProductDetailComponent.prototype.ngOnDestroy = function () {
-        this._testRedux.dispatchAddRouteAction({ route: 'product', id: +this._route.snapshot.params['id'] });
+        this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'product', id: id } });
     };
     ProductDetailComponent.prototype.OnBack = function () {
         this._router.navigate(['/products']);
@@ -41,7 +40,7 @@ var ProductDetailComponent = (function () {
             templateUrl: 'product-detail.component.html',
             styleUrls: ['product-detail.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, product_service_1.ProductService, router_1.Router, redux_state_1.TestRedux])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, product_service_1.ProductService, router_1.Router, ng2_redux_1.NgRedux])
     ], ProductDetailComponent);
     return ProductDetailComponent;
 }());
