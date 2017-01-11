@@ -1,0 +1,24 @@
+.visitedRoutesWrapper {
+    width: 100%;
+    background-color: #cae6f7;
+    display: flex;
+    list-style: none;
+    padding-left: 0px;
+    border: 2px #cae6f7 solid;
+    border-radius: 2px;
+}
+
+.visitedRoute {
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    height: 50px;
+    font-weight: bold;
+    background-color: #279bf9;
+    border-right: 1px solid white;
+}
+
+.visitedRoute a {
+    color: white;
+}

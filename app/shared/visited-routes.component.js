@@ -24,6 +24,7 @@ var VisitedRoutesComponent = (function () {
         core_1.Component({
             selector: 'visited-routes',
             moduleId: module.id,
+            styleUrls: ['./visited-routes.component.css'],
             templateUrl: './visited-routes.component.html'
         }), 
         __metadata('design:paramtypes', [])

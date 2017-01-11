@@ -10,6 +10,7 @@ import 'rxjs/add/operator/catch';
 @Component({
     selector: 'visited-routes',
     moduleId: module.id,
+    styleUrls: ['./visited-routes.component.css'],
     templateUrl: './visited-routes.component.html'
 })
 export class VisitedRoutesComponent {

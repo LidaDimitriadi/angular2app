@@ -23,8 +23,12 @@ import { ProductService } from './products/product.service';
       </div>
     </nav>
     <div class="container">
-      <visited-routes></visited-routes>
-      <router-outlet></router-outlet>
+      <div class="row">
+        <visited-routes></visited-routes>
+      </div>
+      <div class="row">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
   `,
