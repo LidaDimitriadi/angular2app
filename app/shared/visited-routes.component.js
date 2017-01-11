@@ -10,12 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng2_redux_1 = require('ng2-redux');
+var router_1 = require('@angular/router');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 var VisitedRoutesComponent = (function () {
-    function VisitedRoutesComponent() {
+    function VisitedRoutesComponent(_router) {
+        this._router = _router;
     }
+    ;
+    VisitedRoutesComponent.prototype.OnRouteClick = function (route) {
+        if (route.id) {
+            this._router.navigate([("/" + route.route + "/" + route.id)]);
+        }
+        else {
+            this._router.navigate([("/" + route.route)]);
+        }
+    };
     __decorate([
         ng2_redux_1.select(), 
         __metadata('design:type', Object)
@@ -27,7 +38,7 @@ var VisitedRoutesComponent = (function () {
             styleUrls: ['./visited-routes.component.css'],
             templateUrl: './visited-routes.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], VisitedRoutesComponent);
     return VisitedRoutesComponent;
 }());

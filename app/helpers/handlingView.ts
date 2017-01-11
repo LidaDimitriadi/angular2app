@@ -1,7 +1,6 @@
 import { IRoute } from '../IRoute';
 
 export const addRoute = (routes: IRoute[], route: IRoute): IRoute[] => { 
-    console.log("in add route");
         var index = -1; 
         routes.forEach( (x) => {
            if(x.id == route.id && x.route == route.route) {
@@ -11,12 +10,10 @@ export const addRoute = (routes: IRoute[], route: IRoute): IRoute[] => {
         console.log(index);
         if(index == -1) {
 
-            if(routes.length == 3 ){
-                console.log('length == 3');
+            if(routes.length == 12 ){
                 return (routes.slice(1, routes.length)).concat(route);
             }
             return routes.concat(route);
         }
-        console.log(routes);
         return routes;
     }

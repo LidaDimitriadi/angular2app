@@ -27,6 +27,7 @@ var ProductDetailComponent = (function () {
     ProductDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         var id = +this._route.snapshot.params['id'];
+        console.log("id is ", id);
         this.pageTitle += ": " + id;
         this._service.getProductById(id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
         this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'product', id: id } });

@@ -26,6 +26,7 @@ export class ProductDetailComponent implements OnInit {
 
     ngOnInit(): void {
         let id = +this._route.snapshot.params['id'];
+        console.log("id is ", id);
         this.pageTitle += `: ${id}`;
         this._service.getProductById(id).subscribe(
             product => this.product = product,
@@ -33,6 +34,7 @@ export class ProductDetailComponent implements OnInit {
         );
         this.ngRedux.dispatch({ type: UPDATE_VISITED_ROUTES, payload: {route: 'product', id: id} });
     }
+    
 
 
     OnBack(): void {

@@ -1,8 +1,9 @@
 <ul class="visitedRoutesWrapper" *ngIf='visitedRoutes'>
     <li class="visitedRoute" *ngFor='let route of visitedRoutes | async'>
-
-        <a *ngIf="route.id" [routerLink]="['/product', route.id]">{{ route.route }}:{{ route.id }}</a>
-        <a *ngIf="!route.id" [routerLink]="route.route">{{ route.route }}</a>
+        <a *ngIf="route.id" (click)="OnRouteClick(route)">{{ route.route }}:{{ route.id }}</a>
+        <a *ngIf="!route.id" (click)="OnRouteClick(route)">{{ route.route }}</a>
+        <!--<a *ngIf="route.id" [routerLink]="['/product', route.id]">{{ route.route }}:{{ route.id }}</a>
+        <a *ngIf="!route.id" [routerLink]="route.route">{{ route.route }}</a>-->
         
     </li>
 </ul>
