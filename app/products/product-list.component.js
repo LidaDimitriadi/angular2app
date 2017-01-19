@@ -23,8 +23,6 @@ var ProductListComponent = (function () {
         this.imageWidth = 50;
         this.imageMargin = 5;
         this.showImages = false;
-        //filterStr: string = this._testRedux.store.getState().filterStr;
-        //@select() filterStr;
         this.filterStr = this.ngRedux.getState().filterStr;
     }
     ;
@@ -34,17 +32,20 @@ var ProductListComponent = (function () {
     ;
     ProductListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._productService.getProducts().subscribe(function (products) { return _this.products = products; }, function (error) { return _this.errorMessage = error; }, function () { return console.log("completed http request!!"); });
+        this._productService.getProducts().subscribe(function (products) { return _this.products = products; }, function (error) { return _this.errorMessage = error; }, function () { return console.log(_this.products); });
         this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'products' } });
-        console.log(this.ngRedux.getState());
-        console.log(this.filterStr);
-        //this.filterStr = this.ngRedux.select('filterStr');
     };
     ProductListComponent.prototype.ngOnDestroy = function () {
         this.ngRedux.dispatch({ type: actions_1.UPDATE_FILTER, payload: this.filterStr });
     };
     ProductListComponent.prototype.ratingClickHandler = function (event) {
         console.log(event);
+    };
+    ProductListComponent.prototype.removeItem = function (id) {
+        var _this = this;
+        this._productService.removeProduct(id).subscribe(function () {
+            _this._productService.getProducts().subscribe(function (products) { return _this.products = products; }, function (error) { return _this.errorMessage = error; });
+        });
     };
     ProductListComponent = __decorate([
         core_1.Component({

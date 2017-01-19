@@ -32,20 +32,25 @@
                     <tr *ngFor='let product of products | productFilter:filterStr'>
                         <td>
                             <img *ngIf='showImages'
-                            [src]='product.imageUrl' 
-                            [title]='product.productName' 
+                            [src]='product.imgUrl' 
+                            [title]='product.name' 
                             [style.width.px]='imageWidth'
                             [style.margin.px]='imageMargin'
                             />
                         </td>
-                        <td><a [routerLink]="['/product', product.productId]">{{ product.productName }}</a></td>
-                        <td>{{ product.productCode }}</td>
+                        <td><a [routerLink]="['/product', product.id]">{{ product.name }}</a></td>
+                        <td>{{ product.code }}</td>
                         <td>{{ product.releaseDate }}</td>
                         <td>{{ product.price | currency:'USD':true }}</td>
                         <td>
-                            <ai-star [rating]='product.starRating'
+                            <ai-star [rating]='product.rating'
                                      (notify)='ratingClickHandler($event)'>
                             </ai-star>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="removeItem(product.id)">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>

@@ -14,7 +14,7 @@ var http_1 = require('@angular/http');
 var app_routing_1 = require('./app.routing');
 ;
 var products_module_1 = require('./products/products.module');
-var sample1_module_1 = require('./sample1/sample1.module');
+var addProduct_module_1 = require('./addProduct/addProduct.module');
 var sample2_module_1 = require('./sample2/sample2.module');
 var sample3_module_1 = require('./sample3/sample3.module');
 var app_component_1 = require('./app.component');
@@ -36,7 +36,7 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
                 products_module_1.ProductsModule,
-                sample1_module_1.Sample1Module,
+                addProduct_module_1.AddProductModule,
                 sample2_module_1.Sample2Module,
                 sample3_module_1.Sample3Module,
                 app_routing_1.Routing,

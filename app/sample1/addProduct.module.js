@@ -9,19 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ProductFilterPipe = (function () {
-    function ProductFilterPipe() {
+var addProduct_component_1 = require('./addProduct.component');
+var addProduct_routing_1 = require('./addProduct.routing');
+var forms_1 = require('@angular/forms');
+var product_service_1 = require('../products/product.service');
+var Sample1Module = (function () {
+    function Sample1Module() {
     }
-    ProductFilterPipe.prototype.transform = function (value, filterBy) {
-        return value.filter(function (x) { return x.name.toLowerCase().indexOf(filterBy.toLowerCase()) >= 0; });
-    };
-    ProductFilterPipe = __decorate([
-        core_1.Pipe({
-            name: 'productFilter'
+    Sample1Module = __decorate([
+        core_1.NgModule({
+            imports: [
+                addProduct_routing_1.AddProductRouting,
+                forms_1.ReactiveFormsModule
+            ],
+            declarations: [
+                addProduct_component_1.AddProductComponent
+            ],
+            providers: [
+                product_service_1.ProductService
+            ]
         }), 
         __metadata('design:paramtypes', [])
-    ], ProductFilterPipe);
-    return ProductFilterPipe;
+    ], Sample1Module);
+    return Sample1Module;
 }());
-exports.ProductFilterPipe = ProductFilterPipe;
-//# sourceMappingURL=product-filter.pipe.js.map
+exports.Sample1Module = Sample1Module;
+;
+//# sourceMappingURL=addProduct.module.js.map

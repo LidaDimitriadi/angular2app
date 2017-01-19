@@ -21,8 +21,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
     imageWidth: number = 50;
     imageMargin: number = 5;
     showImages: boolean = false;
-    //filterStr: string = this._testRedux.store.getState().filterStr;
-    //@select() filterStr;
     filterStr: string = this.ngRedux.getState().filterStr;
     products: IProduct[]; 
     errorMessage: any;
@@ -40,12 +38,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this._productService.getProducts().subscribe(
             products => this.products = products,
             error => this.errorMessage = <any>error,
-            () => console.log("completed http request!!")
+            () => console.log(this.products)
         );
         this.ngRedux.dispatch({ type: UPDATE_VISITED_ROUTES, payload: { route: 'products' } });
-        console.log(this.ngRedux.getState());
-        console.log(this.filterStr);
-        //this.filterStr = this.ngRedux.select('filterStr');
     }
 
     ngOnDestroy() {
@@ -54,6 +49,17 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     ratingClickHandler(event: string): void {
         console.log(event);
+    }
+
+    removeItem(id: number) {
+        this._productService.removeProduct(id).subscribe(
+            () => {
+                 this._productService.getProducts().subscribe(
+                 products => this.products = products,
+                 error => this.errorMessage = <any>error
+             );
+            }
+        );
     }
 
 

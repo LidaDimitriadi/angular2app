@@ -1,10 +1,16 @@
 export interface IProduct {
-    productId: number;
-    productName: string;
-    productCode: string;
+    id?: number;
+    name: string;
+    code: string;
     releaseDate: string;
     description: string;
     price: number;
-    starRating: number;
-    imageUrl: string;
+    rating: number;
+    imgUrl: string;
+    reviews: IReview[];
+}
+
+export interface IReview {
+    id?: number;
+    content: string;
 }

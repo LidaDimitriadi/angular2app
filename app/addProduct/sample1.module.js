@@ -17,10 +17,10 @@ var Sample1Module = (function () {
     Sample1Module = __decorate([
         core_1.NgModule({
             imports: [
-                sample1_routing_1.sample1Routing
+                sample1_routing_1.AddProductRouting
             ],
             declarations: [
-                sample1_component_1.Sample1Component
+                sample1_component_1.AddProductComponent
             ]
         }), 
         __metadata('design:paramtypes', [])

@@ -4,7 +4,7 @@ import { HttpModule }     from '@angular/http';
 
 import { Routing, AppRoutingProviders } from './app.routing';;
 import { ProductsModule } from './products/products.module'; 
-import { Sample1Module } from './sample1/sample1.module';
+import { AddProductModule } from './addProduct/addProduct.module';
 import { Sample2Module } from './sample2/sample2.module';
 import { Sample3Module } from './sample3/sample3.module';
 
@@ -30,7 +30,7 @@ const initialState: IAppState = {
     BrowserModule,
     HttpModule,
     ProductsModule,
-    Sample1Module,
+    AddProductModule,
     Sample2Module,
     Sample3Module,
     Routing,

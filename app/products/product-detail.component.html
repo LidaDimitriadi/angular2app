@@ -3,16 +3,16 @@
         {{ pageTitle }}
     </div>
     <div class="panel-body" *ngIf='product'>
-        <h2>{{ product.productName }}</h2>
+        <h2>{{ product.name }}</h2>
         <div class="row details">
             <div class="col-md-6">
                 <div class="detailWrapper row">
-                    <span class="detailLabel col-md-3">Name:: </span>
-                    <span class="col-md-9">{{ product.productName }}</span>
+                    <span class="detailLabel col-md-3">Name: </span>
+                    <span class="col-md-9">{{ product.name }}</span>
                 </div>
                 <div class="detailWrapper row">
                     <span class="detailLabel col-md-3">Product Code: </span>
-                    <span class="col-md-9">{{ product.productCode }}</span>
+                    <span class="col-md-9">{{ product.code }}</span>
                 </div>
                 <div class="detailWrapper row">
                     <span class="detailLabel col-md-3">Release Date: </span>
@@ -28,12 +28,28 @@
                 </div>
                 <div class="detailWrapper row">
                     <span class="detailLabel col-md-3">5 Star Rating: </span>
-                    <span class="col-md-9"><ai-star [rating]='product.starRating'></ai-star></span>
+                    <span class="col-md-9"><ai-star [rating]='product.rating'></ai-star></span>
+                </div>
+                <div *ngIf="product.reviews" class="detailWrapper row">
+                    <span class="detailLabel col-md-3">Reviews: </span>
+                    <ul class="col-md-9">
+                        <li *ngFor='let review of product.reviews'>
+                            <span>{{ review.content }}</span>
+                        </li>
+                    </ul>
+                    
+                </div>
+                <div class="detailWrapper row">
+                    <span class="detailLabel col-md-3">Add Review: </span>
+                    <span class="col-md-9"><input type="textarea" [(ngModel)]='review.content'/></span>
+                </div>
+                <div class="detailWrapper row">
+                    <button type="button" class="btn btn-success" (click)="addReview()">Add Review</button>
                 </div>
             </div>
             <div class="col-md-6">
-                <img [src]='product.imageUrl' 
-                    [title]='product.productName' 
+                <img [src]='product.imgUrl' 
+                    [title]='product.name' 
                     [style.width.px]='imageWidth'
                     [style.margin.px]='imageMargin'
                 />

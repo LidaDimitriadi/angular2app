@@ -19,21 +19,35 @@ var ProductDetailComponent = (function () {
         this._service = _service;
         this._router = _router;
         this.ngRedux = ngRedux;
-        this.pageTitle = 'Product Details';
         this.imageWidth = 300;
         this.imageMargin = 10;
+        this.review = { content: "" };
     }
     ;
     ProductDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var id = +this._route.snapshot.params['id'];
-        console.log("id is ", id);
-        this.pageTitle += ": " + id;
-        this._service.getProductById(id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
-        this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'product', id: id } });
+        this._router.events.forEach(function () {
+            var id = +_this._route.snapshot.params['id'];
+            _this.pageTitle = "Product Details: " + id;
+            _this._service.getProductById(id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
+            _this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'product', id: id } });
+        });
+    };
+    ProductDetailComponent.prototype.ngOnChanges = function () {
+        var _this = this;
+        console.log("in onchanges");
+        this._service.getProductById(this.product.id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
     };
     ProductDetailComponent.prototype.OnBack = function () {
         this._router.navigate(['/products']);
+    };
+    ProductDetailComponent.prototype.addReview = function () {
+        var _this = this;
+        this._service.updateProduct(this.product.id, this.review)
+            .subscribe(function () {
+            _this._service.getProductById(_this.product.id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
+            _this.review = { content: "" };
+        });
     };
     ProductDetailComponent = __decorate([
         core_1.Component({

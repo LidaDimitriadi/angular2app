@@ -17,18 +17,44 @@ require('rxjs/add/operator/catch');
 var ProductService = (function () {
     function ProductService(_http) {
         this._http = _http;
-        this.productUrl = "api/products/products.json";
+        this.productUrl = "http://localhost:16281/api/products";
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     ;
     ProductService.prototype.getProducts = function () {
         return this._http.get(this.productUrl)
             .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All Products: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     ;
     ProductService.prototype.getProductById = function (id) {
-        return this.getProducts()
-            .map(function (products) { return products.filter(function (x) { return x.productId == id; })[0]; });
+        return this._http.get(this.productUrl + "/" + id)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('product: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ;
+    ProductService.prototype.addNewProduct = function (product) {
+        return this._http.post(this.productUrl + "/addNewProduct", product)
+            .map(function (response) { return response.json() ? "all ok" : "problem occured"; })
+            .do(function (data) { return console.log('did post? ' + data); })
+            .catch(this.handleError);
+    };
+    ;
+    ProductService.prototype.updateProduct = function (id, review) {
+        return this._http.put(this.productUrl + "/" + id, review)
+            .map(function (response) { return response.json() ? "all ok" : "problem occured"; })
+            .do(function (data) { return console.log('did post? ' + data); })
+            .catch(this.handleError);
+    };
+    ;
+    ProductService.prototype.removeProduct = function (id) {
+        return this._http.delete(this.productUrl + "/" + id)
+            .map(function (response) { return response.json() ? "all ok" : "problem occured"; })
+            .do(function (data) { return console.log('did delete? ' + data); })
+            .catch(this.handleError);
     };
     ;
     ProductService.prototype.handleError = function (error) {
