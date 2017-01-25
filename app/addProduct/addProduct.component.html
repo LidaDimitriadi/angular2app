@@ -1,41 +1,41 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        {{ pageTitle }}
-    </div>
+<div class="mdl-cell mdl-cell--12-col">
+    {{ pageTitle }}
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <form [formGroup]="product" (ngSubmit)="addProduct(product.value)">
-            <div class="form-group">
-                <label for="name">Product Name</label>
-                <input formControlName="name" type="text" class="form-control" id="name">
-            </div>
-            <div class="form-group">
-                <label for="code">Product Code</label>
-                <input formControlName="code" type="text" class="form-control" id="code">
-            </div>
-            <div class="form-group">
-                <label for="releaseDate">Release Date</label>
-                <input formControlName="releaseDate" type="date" class="form-control" id="releaseDate">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input formControlName="description" type="text" class="form-control" id="description">
-            </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input formControlName="price" type="number" class="form-control" id="price">
-            </div>
-            <div class="form-group">
-                <label for="rating">Rating</label>
-                <input formControlName="rating" type="number" class="form-control" id="rating">
-            </div>
-            <div class="form-group">
-                <label for="imgUrl">Image Url</label>
-                <input formControlName="imgUrl" type="text" class="form-control" id="imgUrl">
-            </div>
-            <button type="submit" class="btn btn-large btn-info">Submit</button>
-        </form>
-
+<form [formGroup]="product" (ngSubmit)="addProduct(product.value)" class="centering">
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+        <label class="mdl-textfield__label" for="name">Product Name</label>
+        <input class="mdl-textfield__input" type="text" id="name">
     </div>
-</div>
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+        <label class="mdl-textfield__label" for="code">Product Code</label>
+        <input class="mdl-textfield__input" type="text" id="code">
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+        <label class="mdl-textfield__label" for="releaseDate">Release Date</label>
+        <input class="mdl-textfield__input" type="date" id="releaseDate">
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+        <label class="mdl-textfield__label" for="description">Description</label>
+        <input class="mdl-textfield__input" type="text" id="description" (click)="(this.placeholder='false')">
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+        <label class="mdl-textfield__label" for="price">Price</label>
+        <input class="mdl-textfield__input" type="number" id="price">
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+        <label class="mdl-textfield__label" for="rating">Rating</label>
+        <input class="mdl-textfield__input" type="number" id="rating">
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col">
+        <label class="mdl-textfield__label" for="imgUrl">Image Url</label>
+        <input class="mdl-textfield__input" type="text" id="imgUrl">
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit</button>
+</form>

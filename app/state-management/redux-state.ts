@@ -38,7 +38,7 @@ export const ACTION_HANDLERS = {
 };
 
 
-export function appReducer (state, action) {
+export function appReducer (state: IAppState, action: IAction) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state
 };

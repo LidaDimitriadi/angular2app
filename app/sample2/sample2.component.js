@@ -19,9 +19,12 @@ var Sample2Component = (function () {
     Sample2Component.prototype.ngOnInit = function () {
         this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'sample2' } });
     };
+    Sample2Component.prototype.ngAfterViewInit = function () {
+        componentHandler.upgradeAllRegistered();
+    };
     Sample2Component = __decorate([
         core_1.Component({
-            template: "\n        <div class=\"panel panel-primary\">\n            <div class=\"panel-heading\">\n                {{ pageTitle }}\n            </div>\n        </div>\n    "
+            template: "\n                <form action=\"#\">\n                    <div class=\"mdl-textfield mdl-js-textfield\">\n                        <input class=\"mdl-textfield__input\" type=\"text\" id=\"username\"/>\n                        <label class=\"mdl-textfield__label\" for=\"username\">Username</label>\n                    </div>\n                </form>\n    "
         }), 
         __metadata('design:paramtypes', [ng2_redux_1.NgRedux])
     ], Sample2Component);

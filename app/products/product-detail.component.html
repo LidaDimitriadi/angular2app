@@ -1,53 +1,62 @@
-<div class='panel panel-primary'>
-    <div class='panel-heading'>
-        {{ pageTitle }}
-    </div>
-    <div class="panel-body" *ngIf='product'>
+
+    <div *ngIf='product'>
         <h2>{{ product.name }}</h2>
-        <div class="row details">
-            <div class="col-md-6">
-                <div class="detailWrapper row">
-                    <span class="detailLabel col-md-3">Name: </span>
-                    <span class="col-md-9">{{ product.name }}</span>
+        
+        <div class="details">
+            
+            <div class="mdl-cell mdl-cell--6-col">
+                <div class="detailWrapper">
+                    <span class="detailLabel mdl-cell mdl-cell--3-col">Name: </span>
+                    <span class="mdl-cell mdl-cell--9-col">{{ product.name }}</span>
                 </div>
-                <div class="detailWrapper row">
-                    <span class="detailLabel col-md-3">Product Code: </span>
-                    <span class="col-md-9">{{ product.code }}</span>
+                <div class="detailWrapper">
+                    <span class="detailLabel mdl-cell mdl-cell--3-col">Product Code: </span>
+                    <span class="mdl-cell mdl-cell--9-col">{{ product.code }}</span>
                 </div>
-                <div class="detailWrapper row">
-                    <span class="detailLabel col-md-3">Release Date: </span>
-                    <span class="col-md-9">{{ product.releaseDate }}</span>
+                <div class="detailWrapper">
+                    <span class="detailLabel mdl-cell mdl-cell--3-col">Release Date: </span>
+                    <span class="mdl-cell mdl-cell--9-col">{{ product.releaseDate }}</span>
                 </div>
-                <div class="detailWrapper row">
-                    <span class="detailLabel col-md-3">Description: </span>
-                    <span class="col-md-9">{{ product.description }}</span>
+                <div class="detailWrapper">
+                    <span class="detailLabel mdl-cell mdl-cell--3-col">Description: </span>
+                    <span class="mdl-cell mdl-cell--9-col">{{ product.description }}</span>
                 </div>
-                <div class="detailWrapper row">
-                    <span class="detailLabel col-md-3">Price: </span>
-                    <span class="col-md-9">{{ product.price | currency:'USD':true }}</span>
+                <div class="detailWrapper">
+                    <span class="detailLabel mdl-cell mdl-cell--3-col">Price: </span>
+                    <span class="mdl-cell mdl-cell--9-col">{{ product.price | currency:'USD':true }}</span>
                 </div>
-                <div class="detailWrapper row">
-                    <span class="detailLabel col-md-3">5 Star Rating: </span>
-                    <span class="col-md-9"><ai-star [rating]='product.rating'></ai-star></span>
+                <div class="detailWrapper">
+                    <span class="detailLabel mdl-cell mdl-cell--3-col">5 Star Rating: </span>
+                    <span class="mdl-cell mdl-cell--9-col"><ai-star [rating]='product.rating'></ai-star></span>
                 </div>
-                <div *ngIf="product.reviews" class="detailWrapper row">
-                    <span class="detailLabel col-md-3">Reviews: </span>
-                    <ul class="col-md-9">
-                        <li *ngFor='let review of product.reviews'>
+                <div *ngIf="product.reviews" class="detailWrapper">
+                    <span class="detailLabel mdl-cell mdl-cell--3-col">Reviews: </span>
+                    <ul class='mdl-list mdl-cell mdl-cell--9-col'>
+                        <li *ngFor='let review of product.reviews' class="mdl-list__item">
                             <span>{{ review.content }}</span>
                         </li>
                     </ul>
+                </div>
+
+                <div class="detailWrapper">
+                    <form action="#" class=" mdl-cell mdl-cell--6-col">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" [(ngModel)]='review.content' class="detailLabel mdl-textfield__input" id="review" [ngModelOptions]="{standalone: true}"/>
+                            <label for="review" class="mdl-textfield__label">Add Review</label>
+                        </div>
+                    </form>
+
+
+                    <div class="mdl-cell mdl-cell--3-col review-btn-wrapper">
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="addReview()">Add Review</button>
+                    </div>
                     
                 </div>
-                <div class="detailWrapper row">
-                    <span class="detailLabel col-md-3">Add Review: </span>
-                    <span class="col-md-9"><input type="textarea" [(ngModel)]='review.content'/></span>
-                </div>
-                <div class="detailWrapper row">
-                    <button type="button" class="btn btn-success" (click)="addReview()">Add Review</button>
+                <div class="mdl-cell">
+                        <span [ngClass]="{'hidden': !reviewErrorVisibility, 'mdl-color--teal-100': true }">{{ reviewErrorMessage }}</span>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="mdl-cell mdl-cell--6-col">
                 <img [src]='product.imgUrl' 
                     [title]='product.name' 
                     [style.width.px]='imageWidth'
@@ -56,5 +65,8 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-default" (click)="OnBack()"><span class="fa fa-chevron-left"></span> Back</button>
-</div>
+    <div class="detailWrapper">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary back-btn" (click)="OnBack()"><span class="fa fa-chevron-left"></span> Back</button>
+    </div>
+
+    

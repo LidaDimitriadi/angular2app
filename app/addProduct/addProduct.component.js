@@ -32,6 +32,9 @@ var AddProductComponent = (function () {
             imgUrl: "",
         });
     };
+    AddProductComponent.prototype.ngAfterViewInit = function () {
+        componentHandler.upgradeAllRegistered();
+    };
     AddProductComponent.prototype.addProduct = function (product) {
         var _this = this;
         this._productService.addNewProduct(product)
@@ -40,7 +43,8 @@ var AddProductComponent = (function () {
     AddProductComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            templateUrl: 'addProduct.component.html'
+            templateUrl: 'addProduct.component.html',
+            styleUrls: ['addProduct.component.css']
         }), 
         __metadata('design:paramtypes', [ng2_redux_1.NgRedux, product_service_1.ProductService, forms_1.FormBuilder])
     ], AddProductComponent);

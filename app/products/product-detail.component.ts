@@ -1,4 +1,6 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+declare var componentHandler: any;
+
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { IProduct, IReview } from './product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './product.service';
@@ -12,13 +14,15 @@ import { UPDATE_VISITED_ROUTES } from '../state-management/actions';
     templateUrl: 'product-detail.component.html',
     styleUrls: ['product-detail.component.css'] 
 })
-export class ProductDetailComponent implements OnInit, OnChanges {
+export class ProductDetailComponent implements OnInit, AfterViewChecked {
     pageTitle: string;
     product: IProduct;
     errorMessage: any;
     imageWidth: number = 300;
     imageMargin: number = 10;
     review: IReview;
+    reviewErrorMessage: string = "Please enter a review";
+    reviewErrorVisibility: boolean = false;
 
     constructor(private _route: ActivatedRoute, 
                 private _service: ProductService,
@@ -39,29 +43,34 @@ export class ProductDetailComponent implements OnInit, OnChanges {
         });
     }
 
-    ngOnChanges(): void {
-        console.log("in onchanges");
-        this._service.getProductById(this.product.id).subscribe(
-                product => this.product = product,
-                error => this.errorMessage = <any>error
-            ); 
+    ngAfterViewChecked() {
+        componentHandler.upgradeAllRegistered();
     }
-    
+
+
     OnBack(): void {
         this._router.navigate(['/products']);
     }
 
     addReview(): void {
-        this._service.updateProduct(this.product.id, this.review)
+        if(this.review.content != "") {
+            if(this.reviewErrorVisibility){
+                this.reviewErrorVisibility = !this.reviewErrorVisibility;
+            }
+            this._service.updateProduct(this.product.id, this.review)
             .subscribe(
                 () => {
                     this._service.getProductById(this.product.id).subscribe(
-                    product => this.product = product,
-                    error => this.errorMessage = <any>error
+                        product => this.product = product,
+                        error => this.errorMessage = <any>error
                     ); 
                     this.review = { content: "" };
                 }
             );
+        }
+       else {
+           this.reviewErrorVisibility = !this.reviewErrorVisibility;
+       } 
            
     }
 }

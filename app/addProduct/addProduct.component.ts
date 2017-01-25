@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+declare var componentHandler: any;
+
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { select, NgRedux } from 'ng2-redux';
 
 import { IAppState } from '../state-management/store-interfaces';
@@ -9,9 +11,10 @@ import { FormBuilder } from '@angular/forms';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'addProduct.component.html'
+    templateUrl: 'addProduct.component.html',
+    styleUrls: ['addProduct.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent implements OnInit, AfterViewInit {
      pageTitle: string = "Add new Product";
      product: any;
      logMessage: string;
@@ -34,6 +37,10 @@ export class AddProductComponent implements OnInit {
             imgUrl: "",
         });
      }
+
+     ngAfterViewInit() {
+        componentHandler.upgradeAllRegistered();
+    }
 
      addProduct(product: IProduct) {
          this._productService.addNewProduct(product)

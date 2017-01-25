@@ -1,6 +1,8 @@
-<ul class="visitedRoutesWrapper" *ngIf='visitedRoutes'>
-    <li class="visitedRoute" *ngFor='let route of visitedRoutes | async'>
-        <a *ngIf="route.id" (click)="OnRouteClick(route)">{{ route.route }}:{{ route.id }}</a>
-        <a *ngIf="!route.id" (click)="OnRouteClick(route)">{{ route.route }}</a>
-    </li>
-</ul>
+<div class="mdl-cell--12-col">
+    <ul class="visitedRoutesWrapper" *ngIf='visitedRoutes'>
+        <li class="visitedRoute" *ngFor='let route of visitedRoutes | async'>
+            <button *ngIf="route.id" class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="OnRouteClick(route)">{{ route.route }}:{{ route.id }}</button>
+            <button *ngIf="!route.id" class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="OnRouteClick(route)">{{ route.route }}</button>
+        </li>
+    </ul>
+</div>

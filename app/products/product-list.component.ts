@@ -1,7 +1,10 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+declare var componentHandler: any;
+
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { IProduct } from './product';
 import { ProductService } from './product.service';
 import { select, NgRedux } from 'ng2-redux';
+import { Router } from '@angular/router'; 
 import { UPDATE_FILTER, UPDATE_VISITED_ROUTES } from '../state-management/actions';
 import { IAppState } from '../state-management/store-interfaces';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +19,7 @@ import 'rxjs/add/operator/catch';
    templateUrl: 'product-list.component.html',
    styleUrls: ['product-list.component.css'],
 })
-export class ProductListComponent implements OnInit, OnDestroy {
+export class ProductListComponent implements OnInit, OnDestroy, AfterViewInit {
     pageTitle: string = 'Product List';
     imageWidth: number = 50;
     imageMargin: number = 5;
@@ -25,7 +28,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
     products: IProduct[]; 
     errorMessage: any;
 
-    constructor(private _productService: ProductService, 
+    constructor(private _productService: ProductService,
+                private _router: Router, 
                 private ngRedux: NgRedux<IAppState>) {
     };
    
@@ -47,11 +51,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.ngRedux.dispatch({ type: UPDATE_FILTER, payload: this.filterStr });
     }
 
+    ngAfterViewInit() {
+        componentHandler.upgradeAllRegistered();
+    }
+
     ratingClickHandler(event: string): void {
         console.log(event);
     }
 
-    removeItem(id: number) {
+    removeItem(id: number): void {
         this._productService.removeProduct(id).subscribe(
             () => {
                  this._productService.getProducts().subscribe(
@@ -62,5 +70,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         );
     }
 
-
+   addNewItem(): void {
+       this._router.navigate(['/addProduct']);
+   }
 }

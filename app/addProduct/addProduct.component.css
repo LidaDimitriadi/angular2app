@@ -1,0 +1,7 @@
+.centering {
+    text-align: center;
+    margin: auto;
+}
+
+input::-webkit-datetime-edit{ color: transparent; }
+input:focus::-webkit-datetime-edit{ color: #000; }

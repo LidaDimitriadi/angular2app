@@ -15,7 +15,7 @@ import 'rxjs/add/operator/catch';
     templateUrl: './visited-routes.component.html'
 })
 export class VisitedRoutesComponent {
-    @select() visitedRoutes;
+    @select() visitedRoutes: any;
 
     constructor(private _router: Router) {
 

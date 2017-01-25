@@ -32,7 +32,8 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'redux': 'npm:redux/dist/redux.js',
       'redux-logger': 'npm:redux-logger/lib/index.js',
-      'ng2-redux': 'npm:ng2-redux/lib/index.js'
+      'ng2-redux': 'npm:ng2-redux/lib/index.js',
+      'material-design': 'npm:material-design-lite'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -41,6 +42,10 @@
         defaultExtension: 'js'
       },
       rxjs: {
+        defaultExtension: 'js'
+      },
+      'angular-in-memory-web-api': {
+        main: './index.js',
         defaultExtension: 'js'
       }
     }

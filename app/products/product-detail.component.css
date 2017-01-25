@@ -1,6 +1,7 @@
 .details {
     font-size: 15px;
     margin-top: 20px;
+    display: flex;
 }
 
 .detailLabel {
@@ -10,4 +11,22 @@
 
 .detailWrapper {
     margin: 10px;
+    display: flex;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.back-btn {
+    margin: 20 px;
+
+}
+
+.review-btn-wrapper {
+    align-self: center;
 }

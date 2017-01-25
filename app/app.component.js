@@ -14,11 +14,16 @@ var AppComponent = (function () {
     function AppComponent() {
         this.pageTitle = 'Product Management';
     }
+    AppComponent.prototype.ngAfterViewChecked = function () {
+        componentHandler.upgradeAllRegistered();
+    };
     AppComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'pm-app',
-            template: "\n  <div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <h1>{{ pageTitle }}</h1>\n    </div>  \n  </div>\n    <nav class=\"navbar navbar-default\">\n      <div class=\"container-fluid\">\n        <a class=\"navbar-brand\">{{ pageTitle }}</a>\n        <ul class=\"nav navbar-nav\">\n          <li><a [routerLink]=\"['/welcome']\">Home</a></li>\n          <li><a [routerLink]=\"['/products']\">Product List</a></li>\n          <li><a [routerLink]=\"['/addProduct']\">Add new Product</a></li>\n          <li><a [routerLink]=\"['/sample2']\">Sample Route 2</a></li>\n          <li><a [routerLink]=\"['/sample3']\">Sample Route 3</a></li>\n        </ul>\n      </div>\n    </nav>\n    <div class=\"container\">\n      <div class=\"row\">\n        <visited-routes></visited-routes>\n      </div>\n      <div class=\"row\">\n        <router-outlet></router-outlet>\n      </div>\n    </div>\n  </div>\n  ",
-            providers: [product_service_1.ProductService]
+            templateUrl: 'app.component.html',
+            providers: [product_service_1.ProductService],
+            styleUrls: ['app.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

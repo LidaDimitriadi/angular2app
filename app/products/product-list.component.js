@@ -11,13 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var product_service_1 = require('./product.service');
 var ng2_redux_1 = require('ng2-redux');
+var router_1 = require('@angular/router');
 var actions_1 = require('../state-management/actions');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/catch');
 var ProductListComponent = (function () {
-    function ProductListComponent(_productService, ngRedux) {
+    function ProductListComponent(_productService, _router, ngRedux) {
         this._productService = _productService;
+        this._router = _router;
         this.ngRedux = ngRedux;
         this.pageTitle = 'Product List';
         this.imageWidth = 50;
@@ -38,6 +40,9 @@ var ProductListComponent = (function () {
     ProductListComponent.prototype.ngOnDestroy = function () {
         this.ngRedux.dispatch({ type: actions_1.UPDATE_FILTER, payload: this.filterStr });
     };
+    ProductListComponent.prototype.ngAfterViewInit = function () {
+        componentHandler.upgradeAllRegistered();
+    };
     ProductListComponent.prototype.ratingClickHandler = function (event) {
         console.log(event);
     };
@@ -47,13 +52,16 @@ var ProductListComponent = (function () {
             _this._productService.getProducts().subscribe(function (products) { return _this.products = products; }, function (error) { return _this.errorMessage = error; });
         });
     };
+    ProductListComponent.prototype.addNewItem = function () {
+        this._router.navigate(['/addProduct']);
+    };
     ProductListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             templateUrl: 'product-list.component.html',
             styleUrls: ['product-list.component.css'],
         }), 
-        __metadata('design:paramtypes', [product_service_1.ProductService, ng2_redux_1.NgRedux])
+        __metadata('design:paramtypes', [product_service_1.ProductService, router_1.Router, ng2_redux_1.NgRedux])
     ], ProductListComponent);
     return ProductListComponent;
 }());

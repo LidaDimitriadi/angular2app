@@ -1,3 +1,41 @@
 thead {
   color: #337AB7
 }
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-item {
+  margin: 10px;
+}
+
+.product-card {
+  max-width: 100%;
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.product-card > .mdl-card__title {
+  height: 170px;
+  width: inherit;
+  display: flex;
+  box-sizing: border-box;
+  align-items: flex-end;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.rating-style {
+  margin: 3px;
+  float: right;
+}
+
+.addBtn-display {
+  margin: 0px;
+  margin-top: 200px;
+  margin-left: 10px;
+
+}
+

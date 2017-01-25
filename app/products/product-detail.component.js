@@ -21,6 +21,8 @@ var ProductDetailComponent = (function () {
         this.ngRedux = ngRedux;
         this.imageWidth = 300;
         this.imageMargin = 10;
+        this.reviewErrorMessage = "Please enter a review";
+        this.reviewErrorVisibility = false;
         this.review = { content: "" };
     }
     ;
@@ -33,21 +35,27 @@ var ProductDetailComponent = (function () {
             _this.ngRedux.dispatch({ type: actions_1.UPDATE_VISITED_ROUTES, payload: { route: 'product', id: id } });
         });
     };
-    ProductDetailComponent.prototype.ngOnChanges = function () {
-        var _this = this;
-        console.log("in onchanges");
-        this._service.getProductById(this.product.id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
+    ProductDetailComponent.prototype.ngAfterViewChecked = function () {
+        componentHandler.upgradeAllRegistered();
     };
     ProductDetailComponent.prototype.OnBack = function () {
         this._router.navigate(['/products']);
     };
     ProductDetailComponent.prototype.addReview = function () {
         var _this = this;
-        this._service.updateProduct(this.product.id, this.review)
-            .subscribe(function () {
-            _this._service.getProductById(_this.product.id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
-            _this.review = { content: "" };
-        });
+        if (this.review.content != "") {
+            if (this.reviewErrorVisibility) {
+                this.reviewErrorVisibility = !this.reviewErrorVisibility;
+            }
+            this._service.updateProduct(this.product.id, this.review)
+                .subscribe(function () {
+                _this._service.getProductById(_this.product.id).subscribe(function (product) { return _this.product = product; }, function (error) { return _this.errorMessage = error; });
+                _this.review = { content: "" };
+            });
+        }
+        else {
+            this.reviewErrorVisibility = !this.reviewErrorVisibility;
+        }
     };
     ProductDetailComponent = __decorate([
         core_1.Component({

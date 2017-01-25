@@ -14,6 +14,7 @@ var StarRating = (function () {
         this.notify = new core_1.EventEmitter();
     }
     StarRating.prototype.ngOnChanges = function () {
+        console.log(this.rating);
         this.starWidth = this.rating * 100 / 5;
     };
     StarRating.prototype.OnClick = function () {
